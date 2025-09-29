@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Joshi - Personal Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar (optional, for aesthetics) */
+        /* For Webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Light mode track */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888; /* Light mode thumb */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; /* Light mode thumb hover */
+        }
+        html.dark ::-webkit-scrollbar-track {
+            background: #2d3748; /* Dark mode track */
+        }
+        html.dark ::-webkit-scrollbar-thumb {
+            background: #718096; /* Dark mode thumb */
+        }
+        html.dark ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0; /* Dark mode thumb hover */
+        }
+
+        /* Basic styles for the page */
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Active nav link style */
+        .nav-active {
+            font-weight: 600;
+            color: #0ea5e9; /* sky-500 */
+        }
+        html.dark .nav-active {
+             color: #38bdf8; /* sky-400 */
+        }
+        /* Section padding */
+        section {
+            padding-top: 5rem; /* Adjust based on navbar height */
+            padding-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            section {
+                padding-top: 6rem;
+                padding-bottom: 4rem;
+            }
+        }
+        /* For the typing animation cursor */
+        .typed-cursor {
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+    <script>
+        // Tailwind dark mode configuration
+        tailwind.config = {
+            darkMode: 'class', // or 'media'
+            theme: {
+                extend: {
+                    colors: {
+                        sky: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased">
+
+    <header id="header" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#home" class="text-2xl font-bold text-sky-600 dark:text-sky-500">SHjoshi</a>
+
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="#home" class="nav-link hover:text-sky-600 dark:hover:text-sky-500 transition-colors">Home</a>
+                    <a href="#about" class="nav-link hover:text-sky-600 dark:hover:text-sky-500 transition-colors">About</a>
+                    <a href="#skills" class="nav-link hover:text-sky-600 dark:hover:text-sky-500 transition-colors">Skills</a>
+                    <a href="#projects" class="nav-link hover:text-sky-600 dark:hover:text-sky-500 transition-colors">Projects</a>
+                    <a href="#experience" class="nav-link hover:text-sky-600 dark:hover:text-sky-500 transition-colors">Experience</a>
+                    <a href="#contact" class="nav-link hover:text-sky-600 dark:hover:text-sky-500 transition-colors">Contact</a>
+                    <button id="darkModeToggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-700 dark:text-slate-300"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden text-slate-700 dark:text-slate-300"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </button>
+                </nav>
+
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" class="p-2 rounded-md text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-700">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Home</a>
+                <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">About</a>
+                <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Skills</a>
+                <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Projects</a>
+                <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Experience</a>
+                <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Contact</a>
+                 <div class="pt-2">
+                     <button id="darkModeToggleMobile" class="w-full flex items-center justify-center p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <svg id="sunIconMobile" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-700 dark:text-slate-300"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg id="moonIconMobile" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden text-slate-700 dark:text-slate-300"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <span class="ml-2 text-sm">Toggle Theme</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <section id="home" class="min-h-screen flex items-center justify-center text-center">
+            <div class="space-y-6">
+                <img src="shubhamphoto.jpg" alt="Shubham Joshi" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg object-cover">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold">
+                    Hi, I'm <span class="text-sky-600 dark:text-sky-500">Shubham Joshi</span>
+                </h1>
+                <p class="text-xl sm:text-2xl text-slate-600 dark:text-slate-400">
+                    I'm a <span id="typed-text" class="font-semibold text-sky-600 dark:text-sky-500"></span><span class="typed-cursor">|</span>
+                </p>
+                <p class="max-w-2xl mx-auto text-lg text-slate-700 dark:text-slate-300">
+                    Welcome to my personal space on the web.
+                </p>
+                <div class="space-x-4 pt-4">
+                    <a href="#projects" class="bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center">About Me</h2>
+            <div class="grid md:grid-cols-5 gap-8 items-center">
+                <div class="md:col-span-2">
+                    <img src="shubhamphoto.jpg" alt="About Me" class="rounded-lg shadow-xl w-full object-cover" style="max-height: 450px;">
+                </div>
+                <div class="md:col-span-3 space-y-4">
+                    <p class="text-lg leading-relaxed">
+                        Hello! I'm Shubham Joshi, a Network Engineer and PhD researcher specializing in cryptography and blockchain technology at UNLV. I spend my days making networks talk to each other nicely and my nights pondering how to make data unbreakable (spoiler: it's harder than it sounds).
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        With 7+ years of experience, I've managed enterprise-scale deployments including MPLS networks, firewall migrations, and AAA implementations across 500+ devices. I speak fluent Fortigate and PaloAlto, though they don't always listen the first time.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        My research focuses on secure cryptographic algorithms and blockchain—because sometimes the best security is when even you don't know what you know. When I'm not debugging network mysteries or diving into blockchain rabbit holes, I'm passionate about hiking and traveling around new places.
+                    </p>
+                    <a href="Shubham_Joshi_CV.pdf" download="Shubham_Joshi_CV.pdf" class="inline-block mt-4 bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        Download CV
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center">My Skills</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">🌐</div> 
+                    <h3 class="text-lg font-semibold">MPLS Networks</h3>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">🛡️</div>
+                    <h3 class="text-lg font-semibold">Enterprise Firewalls</h3>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">🐍</div>
+                    <h3 class="text-lg font-semibold">Python</h3>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">🔐</div>
+                    <h3 class="text-lg font-semibold">Cryptography Research</h3>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">⚙️</div>
+                    <h3 class="text-lg font-semibold">Network Automation</h3>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">🤖</div>
+                    <h3 class="text-lg font-semibold">Machine Learning</h3>
+                </div>
+                 <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">📊</div>
+                    <h3 class="text-lg font-semibold">Network Monitoring</h3>
+                </div>
+                 <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">🔗</div>
+                    <h3 class="text-lg font-semibold">Blockchain & Smart Contracts</h3>
+                </div>
+                 <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">🏗️</div>
+                    <h3 class="text-lg font-semibold">High-Performance Computing</h3>
+                </div>
+                 <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-sky-500 mb-3">🔒</div>
+                    <h3 class="text-lg font-semibold">AAA Server Management</h3>
+                </div>
+                </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center">My Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/0284c7/white?text=BNG+Deployment" alt="BNG Deployment" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Broadband Network Gateway (BNG) Deployment</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+                            Planned and implemented IPv4 IP allocation for PPPoE users, configured dynamic NAT for efficient public IP usage, and deployed Enhanced Dynamic Service Gateway (EDSG) for IPTV and Internet services with separate bandwidth management.
+                        </p>
+                        <div class="mb-4">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                Network Engineering
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                RADIUS
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                PPPoE
+                            </span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#contact" class="text-sky-600 dark:text-sky-500 hover:underline font-medium">Contact for Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/0369a1/white?text=Firewall+Migration" alt="Firewall Migration" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Live Network Firewall Migration</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+                            Successfully migrated live network firewall from Fortigate to PaloAlto, including planning network gateway deployment, setting up multiple IPSec tunnels, and implementing 3 WAN networks for high availability.
+                        </p>
+                         <div class="mb-4">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                Fortigate
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                PaloAlto
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                IPSec
+                            </span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#contact" class="text-sky-600 dark:text-sky-500 hover:underline font-medium">Contact for Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/075985/white?text=E-Library+OS" alt="E-Library OS" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">E-Library OS Development</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+                           Customized Xubuntu OS for educational purposes, implemented Linux Terminal Server Project (LTSP) with network boot for thin clients, and deployed the system in over 10 rural areas of Nepal for underprivileged students.
+                        </p>
+                         <div class="mb-4">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                Xubuntu
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                LTSP
+                            </span>
+                             <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                Network Boot
+                            </span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=_E7kk4oAAAAJ&citation_for_view=_E7kk4oAAAAJ:u-x6o8ySG0sC" target="_blank" class="text-sky-600 dark:text-sky-500 hover:underline font-medium">Technical Report</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/0c4a6e/white?text=AAA+Server" alt="AAA Server Implementation" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">TACACS+ & Oxidized Server Implementation</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+                            Configured TACACS+ server on CentOS 7 for centralized AAA management across 200+ network devices including Huawei routers, Cisco switches, and OLTs. Implemented Oxidized server for automated configuration backup.
+                        </p>
+                         <div class="mb-4">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                TACACS+
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                CentOS
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                Oxidized
+                            </span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#contact" class="text-sky-600 dark:text-sky-500 hover:underline font-medium">Contact for Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/0ea5e9/white?text=ML+Student+Engagement" alt="Student Engagement ML" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Student Engagement Detection with ML</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+                            Developed a machine learning system to detect student engagement using facial emotion analysis, eye tracking, and head movement detection to correlate individual learning engagement levels.
+                        </p>
+                         <div class="mb-4">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                Machine Learning
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                Computer Vision
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                Python
+                            </span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://link.springer.com/chapter/10.1007/978-3-031-22918-3_5" target="_blank" class="text-sky-600 dark:text-sky-500 hover:underline font-medium">Research Paper</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/38bdf8/white?text=GRID+WebRTC" alt="GRID Communication App" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">GRID: Web-based Communication App</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+                            Built a web-based communication application using Node.js and WebRTC for secure offline communication within organizational networks, enabling real-time communication without internet dependency.
+                        </p>
+                         <div class="mb-4">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                Node.js
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                WebRTC
+                            </span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-100 dark:text-sky-300 dark:bg-sky-700 last:mr-0 mr-1">
+                                JavaScript
+                            </span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/shubham4564" target="_blank" class="text-sky-600 dark:text-sky-500 hover:underline font-medium">GitHub Profile</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center">Work Experience</h2>
+            <div class="relative border-l-2 border-sky-500 dark:border-sky-400 pl-8 space-y-12">
+                <div class="relative">
+                    <div class="absolute -left-10 top-1 w-6 h-6 bg-sky-500 dark:bg-sky-400 rounded-full border-4 border-slate-50 dark:border-slate-900"></div>
+                    <h3 class="text-xl font-semibold">Research Assistant</h3>
+                    <p class="text-md text-sky-600 dark:text-sky-500">Information and Intelligent Security Lab, University of Nevada Las Vegas | Jan 2024 - Present</p>
+                    <ul class="mt-2 list-disc list-inside text-slate-600 dark:text-slate-400 space-y-1">
+                        <li>Research on secure cryptographic algorithms, blockchain technology, and quantum computing</li>
+                        <li>Contributing to academic publications and conference presentations in cybersecurity</li>
+                    </ul>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-10 top-1 w-6 h-6 bg-sky-500 dark:bg-sky-400 rounded-full border-4 border-slate-50 dark:border-slate-900"></div>
+                    <h3 class="text-xl font-semibold">Network Engineer</h3>
+                    <p class="text-md text-sky-600 dark:text-sky-500">Dish Media Network Ltd. | 2019 - June 2023</p>
+                    <ul class="mt-2 list-disc list-inside text-slate-600 dark:text-slate-400 space-y-1">
+                        <li>Managed Fortigate & PaloAlto firewalls, implementing Security/NAT rules, IPSec tunnels, and Cortex endpoints</li>
+                        <li>Maintained core network operations for 150,000+ customers with BNG/IGW routers and CDN integration</li>
+                        <li>Implemented MPLS backbone with VRRP/HSRP redundancy for nationwide network high availability</li>
+                        <li>Developed NAT log analysis script processing 700M+ lines/hour, supporting 100+ law enforcement cases</li>
+                        <li>Deployed EDSG and radius servers, segregating IPTV/Internet bandwidth for improved service delivery</li>
+                        <li>Implemented AAA servers (HWTACACS) and DNS across 500+ network devices for secure user management</li>
+                        <li>Deployed centralized logging (Graylog, ELK Stack) for enhanced monitoring and threat identification</li>
+                    </ul>
+                </div>
+                </div>
+        </section>
+        
+        <section id="education">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center">Education</h2>
+            <div class="relative border-l-2 border-sky-500 dark:border-sky-400 pl-8 space-y-12">
+                <div class="relative">
+                    <div class="absolute -left-10 top-1 w-6 h-6 bg-sky-500 dark:bg-sky-400 rounded-full border-4 border-slate-50 dark:border-slate-900"></div>
+                    <h3 class="text-xl font-semibold">PhD of Science in Computer Science</h3>
+                    <p class="text-md text-sky-600 dark:text-sky-500">University of Nevada Las Vegas | 2024 - 2028 (Expected)</p>
+                    <p class="mt-2 text-slate-600 dark:text-slate-400">Specialized in Cryptography. Thesis on cryptographic algorithms and blockchain.</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-10 top-1 w-6 h-6 bg-sky-500 dark:bg-sky-400 rounded-full border-4 border-slate-50 dark:border-slate-900"></div>
+                    <h3 class="text-xl font-semibold">Bachelor of Engineering in Computer Engineering</h3>
+                    <p class="text-md text-sky-600 dark:text-sky-500">Kathmandu University (KU) | 2014 - 2018</p>
+                    <p class="mt-2 text-slate-600 dark:text-slate-400">Active member of the Open Source Community Club at KU.</p>
+                </div>
+                </div>
+        </section>
+
+        <section id="contact" class="text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-8">Get In Touch</h2>
+            <p class="max-w-xl mx-auto text-lg mb-8">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of something amazing. Feel free to reach out!
+            </p>
+            <a href="mailto:hello@shjoshi.com.np" class="inline-block bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 mb-8">
+                Say Hello
+            </a>
+            <div class="flex justify-center space-x-6">
+                <a href="https://github.com/shubham4564" target="_blank" class="text-slate-500 hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+                <a href="https://linkedin.com/in/shubham4564" target="_blank" class="text-slate-500 hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="https://twitter.com/shubham4564" target="_blank" class="text-slate-500 hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-500 transition-colors">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-slate-700 mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-500 dark:text-slate-400 text-sm">
+            <p>&copy; <span id="currentYear"></span> Shubham Joshi. All rights reserved.</p>
+            <p>Designed with <span class="text-red-500">❤️</span> by SHjoshi.</p>
+        </div>
+    </footer>
+
+    <button id="backToTopBtn" class="fixed bottom-5 right-5 bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 z-40">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Dark Mode Toggle ---
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            const sunIconMobile = document.getElementById('sunIconMobile');
+            const moonIconMobile = document.getElementById('moonIconMobile');
+            const htmlElement = document.documentElement;
+
+            // Check localStorage for theme preference
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                sunIconMobile.classList.add('hidden');
+                moonIconMobile.classList.remove('hidden');
+            } else {
+                htmlElement.classList.remove('dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                sunIconMobile.classList.remove('hidden');
+                moonIconMobile.classList.add('hidden');
+            }
+
+            const toggleDarkMode = () => {
+                htmlElement.classList.toggle('dark');
+                const isDarkMode = htmlElement.classList.contains('dark');
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+                sunIcon.classList.toggle('hidden', isDarkMode);
+                moonIcon.classList.toggle('hidden', !isDarkMode);
+                sunIconMobile.classList.toggle('hidden', isDarkMode);
+                moonIconMobile.classList.toggle('hidden', !isDarkMode);
+            };
+
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+            darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+
+            // --- Mobile Menu ---
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- Typed Text Animation ---
+            const typedTextElement = document.getElementById('typed-text');
+            const words = ["Network Engineer", "Researcher", "System Administrator", "Blockchain Developer", "Cybersecurity Enthusiast"];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function type() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) {
+                    typedTextElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typedTextElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    setTimeout(() => isDeleting = true, 1500); // Pause at end of word
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+
+                const typeSpeed = isDeleting ? 75 : 150;
+                setTimeout(type, typeSpeed);
+            }
+            if (typedTextElement) type();
+
+
+            // --- Scrollspy for Navigation ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link'); // For desktop
+            const mobileMenuNavLinks = document.querySelectorAll('.mobile-nav-link'); // For mobile
+            const headerHeight = document.getElementById('header').offsetHeight;
+
+            function updateActiveNavLink() {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - headerHeight - 50; // Adjusted for header and some offset
+                    if (window.scrollY >= sectionTop) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+                
+                const setActive = (links) => {
+                    links.forEach(link => {
+                        link.classList.remove('nav-active');
+                        if (link.getAttribute('href') === `#${currentSectionId}`) {
+                            link.classList.add('nav-active');
+                        }
+                    });
+                };
+                
+                setActive(navLinks);
+                setActive(mobileMenuNavLinks);
+            }
+            window.addEventListener('scroll', updateActiveNavLink);
+            updateActiveNavLink(); // Initial call
+
+            // --- Smooth Scroll for Anchor Links (redundant if html.scroll-smooth is used, but good for broader support or specific offsets) ---
+            // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            //     anchor.addEventListener('click', function (e) {
+            //         e.preventDefault();
+            //         const targetId = this.getAttribute('href');
+            //         const targetElement = document.querySelector(targetId);
+            //         if (targetElement) {
+            //             const offsetPosition = targetElement.offsetTop - headerHeight;
+            //             window.scrollTo({
+            //                 top: offsetPosition,
+            //                 behavior: 'smooth'
+            //             });
+            //         }
+            //     });
+            // });
+
+
+            // --- Back to Top Button ---
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopBtn.classList.remove('opacity-100', 'visible');
+                    backToTopBtn.classList.add('opacity-0', 'invisible');
+                }
+            });
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- Footer Current Year ---
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // --- Animate on Scroll (Simple version, can be expanded with Intersection Observer) ---
+            const animatedElements = document.querySelectorAll('.transform'); // Select elements with transform for simple hover effect
+            // For more complex scroll animations, consider Intersection Observer API or a library like AOS.
+            // This template uses hover transforms primarily.
+
+        });
+    </script>
+</body>
+</html>

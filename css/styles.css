@@ -1,0 +1,65 @@
+/* Import Tailwind's base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your Custom Styles */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+html.dark ::-webkit-scrollbar-track {
+    background: #2d3748;
+}
+html.dark ::-webkit-scrollbar-thumb {
+    background: #718096;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+
+/* Active nav link style */
+.nav-active {
+    font-weight: 600;
+    color: #0ea5e9; /* sky-500 */
+}
+html.dark .nav-active {
+     color: #38bdf8; /* sky-400 */
+}
+
+/* Section padding */
+section {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+}
+@media (min-width: 768px) {
+    section {
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+    }
+}
+
+/* For the typing animation cursor */
+.typed-cursor {
+    opacity: 1;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
